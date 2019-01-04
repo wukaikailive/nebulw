@@ -8,10 +8,14 @@ A lib for safe get javascrpt's object.
 ## 使用方式
 
 ```
+npm install --save @wukaikailive/safeget
+```
 
-import safeGet from '你放置库的目录'
+```
 
-import {safeGets} from '你放置库的目录'
+import safeGet from '@wukaikailive/safeget'
+
+import {safeGets} from '@wukaikailive/safeget'
 
 let obj = {
         a: 2,
