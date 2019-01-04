@@ -1,5 +1,5 @@
 # safeget
-This a lib for safe get javascrpt's object.
+A lib for safe get javascrpt's object.
 这是一个用于安全获取对象/数组的属性/元素的库。
 
 这个库的特色就是将表达式解析成抽象语法树，再来求值。
