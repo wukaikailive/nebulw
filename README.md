@@ -7,13 +7,12 @@ A lib for safe get javascrpt's object.
 
 ## 使用方式
 
-```import safeGet from '你放置库的目录'```
-
-或
-
-```import {safeGetByArray} from '你放置库的目录'```
-## 测试
 ```
+
+import safeGet from '你放置库的目录'
+
+import {safeGets} from '你放置库的目录'
+
 let obj = {
         a: 2,
         b: {
@@ -28,12 +27,10 @@ let obj = {
           ]
         }
       }
-```
 
-```
 safeGet(obj,"b.d[0]f[1][0]") // 2
 
-safeGetByArray(obj,"b.c","b.d[0]f[1][0]","b.d[0].g.h") // [1,2,2]
+safeGets(obj,"b.c","b.d[0]f[1][0]","b.d[0].g.h") // [1,2,2]
 ```
 ## 特性
 

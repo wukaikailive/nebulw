@@ -35,7 +35,7 @@ export default function safeGet(obj, calculation) {
   return result;
 }
 
-export function safeGetByArray(obj,...arr){
+export function safeGets(obj,...arr){
   return arr.map(o => {
     return safeGet(obj,o)
   });
