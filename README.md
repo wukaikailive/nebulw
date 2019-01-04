@@ -1,4 +1,4 @@
-# safeget
+# Safeget
 A lib for safe get javascrpt's object.
 这是一个用于安全获取javascrpt对象/数组的属性/元素的库。
 
