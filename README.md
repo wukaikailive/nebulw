@@ -2,6 +2,8 @@
 This a lib for safe get javascrpt's object.
 这是一个用于安全获取对象/数组的属性/元素的库。
 
+这个库主要是为了好玩，性能待测试。
+
 ## 使用方式
 
 ```import safeGet from '你放置库的目录'```
