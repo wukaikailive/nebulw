@@ -1,10 +1,13 @@
 import ASTParser from "./src/ASTParser";
 import { ASTType } from "./src/ASTNode";
 
-export default function safeGet(obj, calculation) {
-  let parser = new ASTParser(calculation);
-  parser.tokenizer();
-  parser.parser();
+export function safeGet(obj, calculation) {
+  let parser = null;
+  if(calculation instanceof ASTParser){
+    parser = calculation;
+  }else{
+    parser = compile(calculation)
+  }
   let ast = parser.ast;
   let length = ast.body.length;
   if (length == 0) {
@@ -39,4 +42,17 @@ export function safeGets(obj,...arr){
   return arr.map(o => {
     return safeGet(obj,o)
   });
+}
+
+export function compile(exp){
+  let parser = new ASTParser(calculation);
+  parser.tokenizer();
+  parser.parser();
+  return parser;
+}
+
+export default {
+  safeGet,
+  safeGets,
+  compile
 }

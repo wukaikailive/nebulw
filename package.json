@@ -1,5 +1,5 @@
 {
-  "name": "@wukaikailive/safeget",
+  "name": "nebulw",
   "version": "1.0.3",
   "description": "A lib for safe get javascrpt's object",
   "main": "index.js",

@@ -1,4 +1,4 @@
-# Safeget
+# Nebulw
 A lib for safe get javascrpt's object.
 这是一个用于安全获取javascrpt对象/数组的属性/元素的库。
 
@@ -8,14 +8,15 @@ A lib for safe get javascrpt's object.
 ## 使用方式
 
 ```
-npm install --save @wukaikailive/safeget
+npm install --save nebulw
 ```
 
 ```
 
-import safeGet from '@wukaikailive/safeget'
+import nebulw from 'nebulw'
 
-import {safeGets} from '@wukaikailive/safeget'
+// 或单独导出
+import {safeGet,safeGets,compile} from 'nebulw'
 
 let obj = {
         a: 2,
@@ -32,9 +33,14 @@ let obj = {
         }
       }
 
-safeGet(obj,"b.d[0]f[1][0]") // 2
+nebulw.safeGet(obj,"b.d[0]f[1][0]") // 2
 
-safeGets(obj,"b.c","b.d[0]f[1][0]","b.d[0].g.h") // [1,2,2]
+// 预编译表达式
+nebulw.safeGet(obj,nebulw.compile("b.d[0]f[1][0]")) //2
+
+// 一次计算多个表达式
+nebulw.safeGets(obj,"b.c","b.d[0]f[1][0]","b.d[0].g.h") // [1,2,2]
+
 ```
 ## 特性
 
