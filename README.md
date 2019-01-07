@@ -44,6 +44,15 @@ nebulw.safeGet(obj,nebulw.compile("b.d[0]f[1][0]")) //2
 nebulw.safeGets(obj,"b.c","b.d[0]f[1][0]","b.d[0].g.h") // [1,2,2]
 
 ```
+
+## 测试
+
+```
+
+npm run test
+
+```
+
 ## 特性
 
 1. 支持d[0]f[1]这种情形，即两个调用在不影响语义的情况下可以省略"."。
