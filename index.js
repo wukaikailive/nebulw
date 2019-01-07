@@ -45,7 +45,7 @@ export function safeGets(obj,...arr){
 }
 
 export function compile(exp){
-  let parser = new ASTParser(calculation);
+  let parser = new ASTParser(exp);
   parser.tokenizer();
   parser.parser();
   return parser;
