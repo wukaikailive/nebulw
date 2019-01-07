@@ -1,6 +1,8 @@
 # Safeget
-A lib for safe get javascrpt's object.
-这是一个用于安全获取javascrpt对象/数组的属性/元素的库。
+
+A library for sage get nested attributes of JavaScript.
+
+这是一个用于安全获取javascrpt对象/数组中深层次的属性/元素的库。
 
 这个库的特色就是将表达式解析成抽象语法树，再来求值。
 主要是为了学习和好玩，性能待测试。
