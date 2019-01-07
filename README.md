@@ -1,6 +1,6 @@
 # Nebulw
 
-A library for sage get nested attributes of JavaScript.
+A library for safe get nested attributes of JavaScript.
 
 这是一个用于安全获取javascrpt对象/数组中深层次的属性/元素的库。
 
