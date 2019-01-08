@@ -76,10 +76,14 @@ export function safeSet(obj,calculation,value){
         let name = astNode.name;
         if(!result[name]){
           result[name] = []
+        }else if(!isSameType(result[name],[])){
+          result[name] = []
         }
         result = result[name]
         indexs.forEach(element => {
           if(!result[element]){
+            result[element] = []
+          } else if(!isSameType(result[name],[])){
             result[element] = []
           }
           parent = result;
@@ -94,6 +98,8 @@ export function safeSet(obj,calculation,value){
         attribute = name;
         if(!result[name]){
           result[name] = {}
+        }else if(!isSameType(result[name],{})){
+          result[name] = {}
         }
         result = result[name]
         break;
@@ -106,10 +112,21 @@ export function safeSet(obj,calculation,value){
   return obj;
 }
 
+export function safeSets(obj,...arr){
+  arr.map(o => {
+    obj = safeSet(obj,o[0],o[1])
+  });
+  return obj;
+}
+
+function isSameType(a,b){
+  return Object.prototype.toString.call(a) === Object.prototype.toString.call(b) 
+}
 
 export default {
   safeGet,
   safeGets,
   compile,
-  safeSet
+  safeSet,
+  safeSets
 }

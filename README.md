@@ -18,7 +18,7 @@ npm install --save nebulw
 import nebulw from 'nebulw'
 
 // 或单独导出
-import {safeGet,safeGets,compile} from 'nebulw'
+import {safeGet,safeGets,compile,safeSet,safeSets} from 'nebulw'
 
 let obj = {
         a: 2,
@@ -35,6 +35,8 @@ let obj = {
         }
       }
 
+// get
+
 nebulw.safeGet(obj,"b.d[0]f[1][0]") // 2
 
 // 预编译表达式
@@ -42,6 +44,18 @@ nebulw.safeGet(obj,nebulw.compile("b.d[0]f[1][0]")) //2
 
 // 一次计算多个表达式
 nebulw.safeGets(obj,"b.c","b.d[0]f[1][0]","b.d[0].g.h") // [1,2,2]
+
+// set
+
+nebulw.safeSet(obj,"b.c",4) // obj.b.c will be set to 4
+
+nebulw.safeSet({},"b.c",4) // {b:{c:4}}
+
+nebulw.safeSet({},"b.c[0]",4)) // {b:{c:[4]}}
+
+nebulw.safeSets({},["b.c",1],["b.d[1]",2],["b.d[0][0]",3]) // {b:{c:1,d:[[3],2]}}
+
+// more test see test.js
 
 ```
 
@@ -56,7 +70,7 @@ npm run test
 ## 功能列表
 
 - [X] safeGet
-- [ ] safeSet
+- [X] safeSet
 
 ## 特性
 
@@ -65,10 +79,20 @@ npm run test
 
 ## 性能对比
 
-使用表格中的库对每个表达式/路径执行100000次的结果。
+使用表格中的库对每个表达式/路径执行100000次的结果,结果仅表示相对大小，在不同环境下运行结果会不一样。
+
+Get:
 
 |表达式|nebelw|nebelw with precompile|[shvl](https://github.com/robinvdvleuten/shvl)|[l-safeget](https://github.com/julyL/safeGethttps://github.com/julyL/safeGet)|
 |-|-|-|-|-|
 |b.c|95ms|13ms|16ms|227ms|
 |b.d[0]f[1][0]|166ms|11ms|Not Support|328ms|
 |b.d[0].g.h|134ms|9ms|Not Support|259ms|
+
+Set:
+
+|表达式|nebelw|nebelw with precompile|[shvl](https://github.com/robinvdvleuten/shvl)
+|-|-|-|-|
+|b.c|201ms|51ms|78ms|
+|b.d[0]f[1][0]|705ms|257ms|86ms|
+|b.d[0].g.h|541ms|145ms|175ms|

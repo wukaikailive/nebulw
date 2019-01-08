@@ -44,9 +44,18 @@ test('safeSet', () => {
   });
   expect(nebulw.safeSet({},"b.c",4)).toEqual({b:{c:4}});
   expect(nebulw.safeSet({},"b.c[0]",4)).toEqual({b:{c:[4]}});
+  expect(nebulw.safeSet({b:{c:4}},"b.c[0]",4)).toEqual({b:{c:[4]}});
   expect(nebulw.safeSet({},"b.c[0][1]",4)).toEqual({b:{c:[[undefined,4]]}});
 });
 
+test('safeSets', () => {
+  expect(nebulw.safeSets({},["b.c",1],["b.d[1]",2],["b.d[0][0]",3])).toEqual(
+    {b:{c:1,d:[[3],2]}}
+  );
+  expect(nebulw.safeSets({},["b.c",1],["b.c[0]",2],["b.c[0][0]",3])).toEqual(
+    {b:{c:[[3]]}}
+  );
+});
 
 // Performance comparison with other libraries
 
@@ -83,37 +92,68 @@ let shvl = {
   }
 }
 
-function compare(exp){
+function compareGet(exp){
   let times = 100000;
-  console.time(exp + ': nebulw')
+  let prefix = 'Get ' + exp
+  console.time(prefix + ': nebulw')
   for(let i = 0; i<times;i++){
     nebulw.safeGet(obj,exp)
   }
-  console.timeEnd(exp + ': nebulw')
+  console.timeEnd(prefix + ': nebulw')
 
-  console.time(exp + ': nebulw with precompile')
+  console.time(prefix + ': nebulw with precompile')
   let parser = nebulw.compile(exp)
   for(let i = 0; i<times;i++){
     nebulw.safeGet(obj,parser)
   }
-  console.timeEnd(exp + ': nebulw with precompile')
+  console.timeEnd(prefix + ': nebulw with precompile')
 
 
-  console.time(exp + ': shvl')
+  console.time(prefix + ': shvl')
   for(let i = 0; i<times;i++){
     shvl.get(obj,exp)
   }
-  console.timeEnd(exp + ': shvl')
+  console.timeEnd(prefix + ': shvl')
 
-  console.time(exp + ': l-safeget')
+  console.time(prefix + ': l-safeget')
   for(let i = 0; i<times;i++){
     l_safeGet(obj,exp)
   }
-  console.timeEnd(exp + ': l-safeget')
+  console.timeEnd(prefix + ': l-safeget')
 };
 
-test('compare',()=>{
-  compare('b.c')
-  compare('b.d[0]f[1][0]')
-  compare('b.d[0].g.h')
+function compareSet(exp,value){
+  let times = 100000;
+  let prefix = 'Set ' + exp
+  console.time(prefix + ': nebulw')
+  for(let i = 0; i<times;i++){
+    nebulw.safeSet({},exp)
+  }
+  console.timeEnd(prefix + ': nebulw')
+
+  console.time(prefix + ': nebulw with precompile')
+  let parser = nebulw.compile(exp)
+  for(let i = 0; i<times;i++){
+    nebulw.safeSet({},parser)
+  }
+  console.timeEnd(prefix + ': nebulw with precompile')
+
+
+  console.time(prefix + ': shvl')
+  for(let i = 0; i<times;i++){
+    shvl.set({},exp)
+  }
+  console.timeEnd(prefix + ': shvl')
+};
+
+test('compare get',()=>{
+  compareGet('b.c')
+  compareGet('b.d[0]f[1][0]')
+  compareGet('b.d[0].g.h')
+})
+
+test('compare set',()=>{
+  compareSet('b.c',4)
+  compareSet('b.d[0]f[1][0]',4)
+  compareSet('b.d[0].g.h',4)
 })
