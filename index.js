@@ -51,8 +51,65 @@ export function compile(exp){
   return parser;
 }
 
+export function safeSet(obj,calculation,value){
+  let parser = null;
+  if(calculation instanceof ASTParser){
+    parser = calculation;
+  }else{
+    parser = compile(calculation)
+  }
+  let ast = parser.ast;
+  let length = ast.body.length;
+  if (length == 0) {
+    return null;
+  }
+  let parent;
+  let attribute;
+  let result = obj || {};
+  for (let i = 0; i < length; i++) {
+    let astNode = ast.body[i];
+    switch (astNode.type) {
+      case ASTType.root:
+        break;
+      case ASTType.array: {
+        let indexs = astNode.indexs;
+        let name = astNode.name;
+        if(!result[name]){
+          result[name] = []
+        }
+        result = result[name]
+        indexs.forEach(element => {
+          if(!result[element]){
+            result[element] = []
+          }
+          parent = result;
+          result = result[element]
+          attribute = element;
+        });
+        break;
+      }
+      case ASTType.object: {
+        let name = astNode.name;
+        parent = result;
+        attribute = name;
+        if(!result[name]){
+          result[name] = {}
+        }
+        result = result[name]
+        break;
+      }
+    }
+    if(i===length-1){
+      parent[attribute] = value
+    }
+  }
+  return obj;
+}
+
+
 export default {
   safeGet,
   safeGets,
-  compile
+  compile,
+  safeSet
 }

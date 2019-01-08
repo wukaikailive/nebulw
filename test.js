@@ -16,6 +16,7 @@ let obj = {
 
 test('safeGet', () => {
     expect(nebulw.safeGet(obj,"b.d[0]f[1][0]")).toBe(2);
+    // expect(nebulw.safeGet([1,2],"[0]")).toBe(1);
 });
 
 test('safeGets', () => {
@@ -25,6 +26,27 @@ test('safeGets', () => {
 test('compile',() => {
     expect(nebulw.safeGets(obj,nebulw.compile("b.c"),nebulw.compile("b.d[0]f[1][0]"),nebulw.compile("b.d[0].g.h"))).toEqual([1,2,2]);
 })
+
+test('safeSet', () => {
+  expect(nebulw.safeSet(obj,"b.c",4)).toEqual( {
+    a: 2,
+    b: {
+      c: 4,
+      d: [
+        {
+          f: [1, [2, 3]],
+          g: {
+            h: 2
+          }
+        }
+      ]
+    }
+  });
+  expect(nebulw.safeSet({},"b.c",4)).toEqual({b:{c:4}});
+  expect(nebulw.safeSet({},"b.c[0]",4)).toEqual({b:{c:[4]}});
+  expect(nebulw.safeSet({},"b.c[0][1]",4)).toEqual({b:{c:[[undefined,4]]}});
+});
+
 
 // Performance comparison with other libraries
 

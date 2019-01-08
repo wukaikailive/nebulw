@@ -4,7 +4,8 @@
   "description": "A lib for safe get javascrpt's object",
   "main": "index.js",
   "scripts": {
-    "test": "jest test.js && exit 0"
+    "test": "jest test.js && exit 0",
+    "debugger": "node --inspect-brk ./node_modules/jest/bin/jest --runInBand --no-cache --no-watchman"
   },
   "author": "wukaikailive",
   "license": "BSD-3-Clause",
