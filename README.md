@@ -1,10 +1,10 @@
 # Nebulw
 
-A library for safe get nested attributes of JavaScript.
+A library for safe get/set nested attributes of JavaScript.
 
-这是一个用于安全获取javascrpt对象/数组中深层次的属性/元素的库。
+这是一个用于安全获取/设置javascrpt对象/数组中深层次的属性/元素的库。
 
-这个库的特色就是将表达式解析成抽象语法树，再来求值。
+这个库的特色就是将表达式解析成抽象语法树，再进行求值或赋值。
 主要是为了学习和好玩，性能待测试。
 
 ## 使用方式
@@ -53,9 +53,14 @@ npm run test
 
 ```
 
+## 功能列表
+
+- [X] safeGet
+- [ ] safeSet
+
 ## 特性
 
-1. 支持d[0]f[1]这种情形，即两个调用在不影响语义的情况下可以省略"."。
+1. 支持d[0]f[1]这种情形，即两个连续调用在不影响语义的情况下可以省略"."。
 2. 多个连续的"."会被当作一个，如 b..c 等价于 b.c 。
 
 ## 性能对比
