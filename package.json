@@ -11,7 +11,7 @@
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
-    "url": "git@github.com:wukaikailive/safeget.git"
+    "url": "git@github.com:wukaikailive/nebulw.git"
   },
   "babel": {
     "presets": [

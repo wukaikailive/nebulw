@@ -83,7 +83,7 @@ npm run test
 
 Get:
 
-|表达式|nebelw|nebelw with precompile|[shvl](https://github.com/robinvdvleuten/shvl)|[l-safeget](https://github.com/julyL/safeGethttps://github.com/julyL/safeGet)|
+|表达式|nebulw|nebulw with precompile|[shvl](https://github.com/robinvdvleuten/shvl)|[l-safeget](https://github.com/julyL/safeGethttps://github.com/julyL/safeGet)|
 |-|-|-|-|-|
 |b.c|95ms|13ms|16ms|227ms|
 |b.d[0]f[1][0]|166ms|11ms|Not Support|328ms|
@@ -91,7 +91,7 @@ Get:
 
 Set:
 
-|表达式|nebelw|nebelw with precompile|[shvl](https://github.com/robinvdvleuten/shvl)
+|表达式|nebulw|nebulw with precompile|[shvl](https://github.com/robinvdvleuten/shvl)
 |-|-|-|-|
 |b.c|201ms|51ms|78ms|
 |b.d[0]f[1][0]|705ms|257ms|86ms|
