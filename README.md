@@ -59,3 +59,11 @@ npm run test
 2. 多个连续的"."会被当作一个，如 b..c 等价于 b.c 。
 
 ## 性能对比
+
+使用表格中的库对每个表达式/路径执行100000次的结果。
+
+|表达式|nebelw|nebelw with precompile|[shvl](https://github.com/robinvdvleuten/shvl)|[l-safeget](https://github.com/julyL/safeGethttps://github.com/julyL/safeGet)|
+|-|-|-|-|-|
+|b.c|95ms|13ms|16ms|227ms|
+|b.d[0]f[1][0]|166ms|11ms|Not Support|328ms|
+|b.d[0].g.h|134ms|9ms|Not Support|259ms|
