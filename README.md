@@ -94,5 +94,5 @@ Set:
 |表达式|nebulw|nebulw with precompile|[shvl](https://github.com/robinvdvleuten/shvl)
 |-|-|-|-|
 |b.c|201ms|51ms|78ms|
-|b.d[0]f[1][0]|705ms|257ms|86ms|
-|b.d[0].g.h|541ms|145ms|175ms|
+|b.d[0]f[1][0]|705ms|257ms|Not Support|
+|b.d[0].g.h|541ms|145ms|Not Support|
