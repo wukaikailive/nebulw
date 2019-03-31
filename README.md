@@ -1,5 +1,7 @@
 # Nebulw
 
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+
 A library for safe get/set nested attributes of JavaScript.
 
 这是一个用于安全获取/设置javascrpt对象/数组中深层次的属性/元素的库。
